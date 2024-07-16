@@ -1,6 +1,6 @@
 # Library Management System
 
-This project is a simple Library Management System implemented using Python (Flask) for the backend and HTML/CSS/JavaScript for the frontend.
+This project is a simple Library Management System implemented using Python (Flask) for the backend and HTML/CSS/JavaScript for the frontend, using SQLite for the database.
 
 ## Features
 
@@ -15,7 +15,7 @@ This project is a simple Library Management System implemented using Python (Fla
 - **Backend**: Python, Flask, SQLite (for local database)
 - **Frontend**: HTML, CSS (Bootstrap), JavaScript (jQuery)
 - **Database**: SQLite (can be easily swapped with other SQL databases like MySQL, PostgreSQL)
-- **Dependencies**: Flask, Flask-Cors (for handling CORS), SQLAlchemy (optional, for ORM)
+- **Dependencies**: Flask, Flask-Cors (for handling CORS)
 
 ## Getting Started
 
@@ -36,7 +36,7 @@ This project is a simple Library Management System implemented using Python (Fla
 2. Install dependencies:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r flask flask-cors
    ```
 
 ### Running the Application
@@ -47,13 +47,35 @@ This project is a simple Library Management System implemented using Python (Fla
    python app.py
    ```
 
-2. Open your web browser and go to `http://localhost:5000` to access the Library Management System.
+2. Setup Virtual Environment (optional but recommended):
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Intialize the database:
+
+   ```bash
+   curl -X GET http://localhost:5000/setup
+   ```	
+
+4. Import data(optional):
+
+   ```bash
+   curl -X GET http://localhost:5000/data
+   ```	
+The database used in this project is based on the [Goodreads Books Dataset](https://www.kaggle.com/zygmunt/goodbooks-10k), provided in the `data` directory. You can use this pre-provided database or replace it with your own dataset.
+
+
+5. Open your web browser and go to `http://localhost:5000` to access the Library Management System.
 
 ### Usage
 
 - **Adding a Book**: Click on "Add a Book" and fill in the details. Submit the form to add a new book.
 - **Updating a Book**: Click on "Update a Book" to modify existing book details.
 - **Adding a User**: Navigate to "Add a User" to create new library users.
+- **Adding a Borrow**: Navigate to "Add a Borrow" to create new borrows.
 - **Searching for Books**: Use the "Search Books" feature to find books by title, author, ISBN, or ISBN13.
 
 ### API Endpoints
@@ -65,11 +87,7 @@ This project is a simple Library Management System implemented using Python (Fla
 - **DELETE `/books/<book_id>`**: Delete a book by ID.
 - **GET `/users`**: Retrieve all users.
 - **POST `/users`**: Add a new user.
-- **GET `/search_books?q=<query>`**: Search for books by title, author, ISBN, or ISBN13.
-
-### Contributing
-
-Contributions are welcome! If you'd like to contribute, please fork the repository and create a pull request with your changes.
+- **POST `/search_books?q=<query>`**: Search for books by title, author, ISBN, or ISBN13.
 
 ### License
 
