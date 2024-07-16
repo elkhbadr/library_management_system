@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .book-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .book-item img {
+            width: 50px;
+            height: auto;
+            margin-right: 15px;
+        }
+        .book-details {
+            flex: 1;
+        }
+        .book-id {
+            font-weight: bold;
+            color: #555;
+        }
+        .book-title {
+            font-weight: bold;
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+        .book-authors {
+            font-size: 1rem;
+            color: #777;
+        }
+        .availability {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Search Books</h1>
+        <div class="mt-3">
+            <form id="searchBookForm">
+                <div class="mb-3">
+                    <label for="query" class="form-label">Search</label>
+                    <input type="text" class="form-control" id="query" placeholder="Enter title, author, ISBN, or ISBN13">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+        <div id="searchResults" class="mt-5">
+            <h2>Results</h2>
+            <ul id="resultsList" class="list-group">
+                <!-- Search results will be appended here -->
+            </ul>
+        </div>
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#searchBookForm').submit(function(event){
+                event.preventDefault();
+                
+                var query = $('#query').val();
+                
+                $.ajax({
+                    url: 'http://127.0.0.1:5000/search_books?q=' + query,
+                    type: 'POSt',
+                    success: function(response) {
+                        var resultsList = $('#resultsList');
+                        resultsList.empty();
+                        
+                        if (response.length === 0) {
+                            resultsList.append('<li class="list-group-item">No results found.</li>');
+                        } else {
+                            response.forEach(function(book) {
+                                var bookId = book[0];
+                                var title = book[5];
+                                var authors = book[3];
+                                var imageUrl = book[9]; // Assuming the image URL is the 10th item in the tuple
+                                var availability = book[10]; // Assuming the availability is now the last item in the tuple
+                                resultsList.append(
+                                    '<li class="list-group-item book-item">' + 
+                                    '<img src="' + imageUrl + '" alt="' + title + '">' + 
+                                    '<div class="book-details">' +
+                                    '<div class="book-id">ID: ' + bookId + '</div>' +
+                                    '<div class="book-title">' + title + '</div>' +
+                                    '<div class="book-authors">by ' + authors + '</div>' +
+                                    '</div>' +
+                                    '<div class="availability ' + (availability === 'Available' ? 'text-success' : 'text-danger') + '">' + availability + '</div>' + 
+                                    '</li>'
+                                );
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Error searching books: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
