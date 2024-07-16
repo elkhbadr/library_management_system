@@ -80,14 +80,63 @@ The database used in this project is based on the [Goodreads Books Dataset](http
 
 ### API Endpoints
 
-- **POST `/books`**: Add a new book.
-- **GET `/books`**: Retrieve all books.
-- **GET `/books/<book_id>`**: Retrieve a specific book by ID.
-- **POST `/books/<book_id>`**: Update an existing book.
-- **DELETE `/books/<book_id>`**: Delete a book by ID.
-- **GET `/users`**: Retrieve all users.
-- **POST `/users`**: Add a new user.
-- **POST `/search_books?q=<query>`**: Search for books by title, author, ISBN, or ISBN13.
+#### Books
+
+- **GET /books**  
+  Retrieves a list of all books in the library.
+
+- **POST /books**  
+  Adds a new book to the library database.
+
+- **GET /books/{book_id}**  
+  Retrieves details of a specific book by `book_id`.
+
+- **DELETE /books/{book_id}**  
+  Deletes a book from the library by `book_id`.
+
+- **POST /update_book**  
+  Updates details of a book identified by `book_id`.
+
+#### Users
+
+- **GET /users**  
+  Retrieves a list of all users in the library system.
+
+- **POST /users**  
+  Adds a new user to the library system.
+
+- **PUT /users/{user_id}**  
+  Updates details of a user identified by `user_id`.
+
+- **DELETE /users/{user_id}**  
+  Deletes a user from the library system by `user_id`.
+
+#### Borrows
+
+- **GET /borrows**  
+  Retrieves a list of all borrow records in the library.
+
+- **POST /borrows**  
+  Adds a new borrow record for a user borrowing a book.
+
+- **PUT /borrows/{borrow_id}**  
+  Updates details of a borrow record identified by `borrow_id`.
+
+- **DELETE /borrows/{borrow_id}**  
+  Deletes a borrow record from the library by `borrow_id`.
+
+#### Setup and Data Import
+
+- **POST /setup**  
+  Initializes the database by creating necessary tables (`books`, `users`, `borrows`).
+
+- **POST /data**  
+  Imports initial data from CSV files (`books.csv`, `users.csv`, `borrow.csv`) into the database tables.
+
+#### Additional Functionality
+
+- **POST /search_books**  
+  Searches for books by title, author, ISBN, or ISBN13.
 
 ### License
 
