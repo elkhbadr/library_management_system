@@ -10,6 +10,11 @@ This project is a simple Library Management System implemented using Python (Fla
 - **Add a Borrow**: Enables tracking of book borrowings.
 - **Search Books**: Provides search functionality to find books by title, author, ISBN, or ISBN13.
 
+![home interface](screenshot/1.png)
+
+![search interface](screenshot/2.png)
+
+
 ## Technologies Used
 
 - **Backend**: Python, Flask, SQLite (for local database)
