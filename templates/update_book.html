@@ -64,7 +64,7 @@
         function fetchBookDetails() {
             var bookId = $('#book_id').val();
             $.ajax({
-                url: 'http://127.0.0.1:5000/get_book/' + bookId,
+                url: 'http://127.0.0.1:5000/books/' + bookId,
                 type: 'GET',
                 success: function(response) {
                     $('#isbn').val(response[1]);  // Adjust these indices based on your table schema
