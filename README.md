@@ -8,7 +8,7 @@ This project is a simple Library Management System implemented using Python (Fla
 - **Update a Book**: Enables editing existing book details.
 - **Add a User**: Allows librarians to add new library users.
 - **Add a Borrow**: Enables tracking of book borrowings.
-- **Search Books**: Provides search functionality to find books by title, author, ISBN, or ISBN13.
+- **Search Books**: Provides live search functionality to find books by title, author, ISBN, or ISBN13.
 
 ![home interface](screenshot/1.png)
 
