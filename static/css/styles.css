@@ -1,0 +1,14 @@
+/* styles.css */
+
+/* Ajoutez vos styles personnalisés ici */
+.card {
+    background-color: #140f0f;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Exemple de style supplémentaire */
+.btn-lg {
+    font-size: 1.2rem;
+    padding: 10px 2px;
+}

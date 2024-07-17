@@ -1,10 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="icon" href="/static/images/library.png"/>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add a Borrow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e6f0f8;
+            font-family: 'Atma', sans-serif;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #000000;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ffffff1a;
+            color: #e6e9ec;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #e6e9ec;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        .btn-primary, .btn-secondary {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Atma' rel='stylesheet'>
 </head>
 <body>
     <div class="container">
@@ -44,8 +77,7 @@
                     reader_id: $('#reader_id').val(),
                     book_id: $('#book_id').val(),
                     borrow_date: $('#borrow_date').val(),
-                    return_date: $('#return_date').val(),
-                    is_returned: $('#is_returned').val()
+                    return_date: $('#return_date').val()
                 };
                 
                 $.ajax({
@@ -65,6 +97,5 @@
             });
         });
     </script>
-    
 </body>
 </html>
