@@ -56,7 +56,6 @@
                     <label for="query" class="form-label">Search</label>
                     <input type="text" class="form-control" id="query" placeholder="Enter title, author, ISBN, or ISBN13">
                 </div>
-                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
         <div id="searchResults" class="mt-5">
@@ -72,14 +71,12 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function(){
-            $('#searchBookForm').submit(function(event){
-                event.preventDefault();
-                
-                var query = $('#query').val();
+            $('#query').on('input', function(){
+                var query = $(this).val();
                 
                 $.ajax({
                     url: 'http://127.0.0.1:5000/search_books?q=' + query,
-                    type: 'POSt',
+                    type: 'POST',
                     success: function(response) {
                         var resultsList = $('#resultsList');
                         resultsList.empty();
@@ -91,8 +88,8 @@
                                 var bookId = book[0];
                                 var title = book[5];
                                 var authors = book[3];
-                                var imageUrl = book[9]; // Assuming the image URL is the 10th item in the tuple
-                                var availability = book[10]; // Assuming the availability is now the last item in the tuple
+                                var imageUrl = book[9];
+                                var availability = book[10];
                                 resultsList.append(
                                     '<li class="list-group-item book-item">' + 
                                     '<img src="' + imageUrl + '" alt="' + title + '">' + 
@@ -107,9 +104,6 @@
                             });
                         }
                     },
-                    error: function(xhr, status, error) {
-                        alert('Error searching books: ' + xhr.responseText);
-                    }
                 });
             });
         });
